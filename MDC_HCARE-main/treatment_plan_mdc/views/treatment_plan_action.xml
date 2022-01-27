@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+
+
+
+<!--    <act_window-->
+<!--            id="action_treatment_plan_print"-->
+<!--            name="Treatment Plan Print"-->
+<!--            res_model="treatment.plan.wizard"-->
+<!--            src_model="medical.teeth.treatment"-->
+<!--            view_mode="form"-->
+<!--            multi="True"-->
+<!--            target="new"-->
+<!--            context="{'default_appt_id': active_id}"-->
+<!--            key2="client_action_multi"-->
+<!--    />-->
+    <record id="print_treatment_plan_action_server" model="ir.actions.server">
+        <field name="name">Treatment Plan Print</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_medical_teeth_treatment"/>
+        <field name="binding_model_id" ref="model_medical_teeth_treatment"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+            action = records.print_treatment_plan()
+        </field>
+    </record>
+
+
+</data>
+</odoo>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- QCHP License Form View -->
+    <record id="view_aks_employee_qchp_license_form" model="ir.ui.view">
+        <field name="name">aks.employee.qchp.license.form.view</field>
+        <field name="model">aks.employee.qchp.license</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <form string="QCHP License Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="date" widget="date"/>
+                            <field name="company_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Valuation Details" name="valuation_details">
+                            <field
+                                    name="qchp_license_line_ids"
+                                    groups="base.group_user"
+                                    widget="section_and_note_one2many"
+                                    mode="tree,kanban"
+                                    attrs="{'invisible': [('employee_id', '=', False)]}"
+                            >
+                                <tree string="Valuation Details Lines" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="point"/>
+                                    <field name="remark"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="employee_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- QCHP License Tree view -->
+    <record id="view_aks_employee_qchp_license_tree" model="ir.ui.view">
+        <field name="name">aks.employee.qchp.license.tree.view</field>
+        <field name="model">aks.employee.qchp.license</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <tree string="QCHP License Tree">
+                <field name="employee_id"/>
+                <field name="date" widget="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- action of the QCHP License menu -->
+    <record id="action_employee_qchp_license" model="ir.actions.act_window">
+        <field name="name">QCHP License</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">aks.employee.qchp.license</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create First QCHP License
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_employee_qchp_license"
+            name="QCHP License"
+            action="action_employee_qchp_license"
+            parent="hr.menu_hr_root"
+            groups="hr.group_hr_manager"
+            sequence="99"
+    />
+
+</odoo>

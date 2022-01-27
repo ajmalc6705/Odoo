@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aks_employee_visa_type,access.aks.employee.visa.type,model_aks_visa_type,,1,1,1,1
+access_aks_employee_relationship,access.aks.employee.relationship,model_aks_employee_relation,,1,1,1,1
+access_aks_employee_visa_details_line,access.aks.employee.visa.details.line,model_hr_employee_visa_details_line,,1,1,1,1

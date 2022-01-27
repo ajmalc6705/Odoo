@@ -1,0 +1,59 @@
+<odoo>
+    <record id="view_restrict_employee_salary_form" model="ir.ui.view">
+        <field name="name">restrict.employee.salary.form</field>
+        <field name="model">restrict.employee.salary</field>
+        <field name="arch" type="xml">
+            <form string="Restrict Employee Salary">
+                <header>
+                    <button string="Approve" name="action_approve_employee_salary_restriction" type="object" states="draft"/>
+                    <button string="Cancel" name="action_cancel_employee_salary_restriction" type="object" groups="aks_restrict_employee_salary.group_restrict_salary_cancel"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="employee_id" class="oe_edit_only"/>
+                        <h1>
+                            <field name="employee_id" placeholder="Employee"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="remarks"/>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="view_restrict_employee_salary_tree" model="ir.ui.view">
+        <field name="name">restrict.employee.salary.tree</field>
+        <field name="model">restrict.employee.salary</field>
+        <field name="arch" type="xml">
+            <tree string="Restrict Employee Salary">
+                <field name="employee_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_view_restrict_employee_salary_form" model="ir.actions.act_window">
+        <field name="name">Restrict Employee Salary</field>
+        <field name="res_model">restrict.employee.salary</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_view_restrict_employee_salary_form" id="menu_restrict_employee_salary"
+              parent="hr_payroll.menu_hr_payroll_root"
+    />
+</odoo>

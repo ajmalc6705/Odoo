@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="medical_physician_view_inherited" model="ir.ui.view">
+        <field name="name">Physician</field>
+        <field name="model">medical.physician</field>
+        <field name="inherit_id" ref="pragtech_dental_management.medical_physician_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Insurance Number">
+                    <field name="doctor_insurance_ids" context="{'default_physician_id':id}">
+                        <tree editable="bottom">
+                            <field name="physician_id" invisible="1"/>
+                            <field name="ins_company_id"/>
+                            <field name="doctor_no"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

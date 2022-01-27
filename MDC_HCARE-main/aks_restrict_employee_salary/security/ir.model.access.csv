@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_restrict_employee_salary_user,restrict_employee_salary user,model_restrict_employee_salary,hr.group_hr_user,1,0,0,0
+access_restrict_employee_salary_manager,restrict_employee_salary manager,model_restrict_employee_salary,hr_payroll.group_hr_payroll_user,1,1,1,1

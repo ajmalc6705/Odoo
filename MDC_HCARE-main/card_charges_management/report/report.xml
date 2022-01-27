@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="card_report"
+            string="Card Reconciliation Report"
+            model="card.report"
+            report_type="qweb-pdf"
+            file="card_charges_management.card_report_pdf"
+            name="card_charges_management.card_report_pdf"
+            menu="False"
+            />
+
+        <report
+            id="report_card_charges"
+            string="Card Charges Report"
+            model="card.charges"
+            report_type="qweb-pdf"
+            file="card_charges_management.card_charges_report_pdf"
+            name="card_charges_management.card_charges_report_pdf"
+            />
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<odoo>
+	<data>
+
+        <record id="teeth_view_inherited" model="ir.ui.view">
+            <field name="name">teeth.code.form</field>
+            <field name="model">teeth.code</field>
+            <field name="inherit_id" ref="pragtech_dental_management.teeth_code_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='iso']" position="after">
+                    <field name="child"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

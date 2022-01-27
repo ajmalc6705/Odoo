@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="card_charges_report_pdf">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                     <div class="page">
+                         <div class="row">
+                             <div class="text-center" >
+                                 <h2>CARD CHARGES</h2>
+                             </div>
+                             <!--<div class="text-center" style="font-size:17px;">-->
+                                <!--<div class="text-right">-->
+                                    <!--<b>Date: </b>&#160;-->
+                                    <!--<span t-esc="o.payment_date" t-options='{"widget": "date"}'/>-->
+                                <!--</div>-->
+                                <!--<br/>-->
+                            <!--</div>-->
+                         </div>
+                         <div class="row mt32 mb32" id="informations">
+                             <div class="col-xs-2">
+                                <strong>Number:</strong>
+                                <p t-field="o.name"/>
+                            </div>
+                            <div class="col-xs-2">
+                                <strong>Card amount:</strong>
+                                <p t-field="o.card_amount"/>
+                            </div>
+                            <div  class="col-xs-2">
+                                <strong>Service Charge:</strong>
+                                <p t-field="o.service_charge"/>
+                            </div>
+                             <div  class="col-xs-2">
+                                 <strong>Bank:</strong>
+                                 <p t-field="o.bank_id.name"/>
+                             </div>
+                             <div  class="col-xs-2">
+                                 <strong>Card Journal:</strong>
+                                 <p t-field="o.card_id.name"/>
+                             </div>
+                             <div  class="col-xs-2">
+                                 <strong>Date:</strong>
+                                 <p t-esc="o.payment_date" t-options='{"widget": "date"}'/>
+                             </div>
+                             <div  class="col-xs-4">
+                                 <strong>Amount Transferring to Bank:</strong>
+                                 <p t-field="o.transfer_amount"/>
+                             </div>
+                         </div>
+                         <h4>Card Lines</h4>
+                     <table class="table table-bordered table-striped" >
+                        <tr >
+                            <th>Date</th>
+                            <th>Account</th>
+                            <th>Partner</th>
+                            <th>Label</th>
+                            <th class="text-right">Debit</th>
+                            <!--<th class="text-right">Credit</th>-->
+                        </tr>
+                        <t t-set="sum_debit" t-value="0" />
+                        <t t-set="sum_credit" t-value="0" />
+                        <t t-foreach="o.move_lines" t-as="line">
+                            <t t-set="sum_debit" t-value="sum_debit+line.debit" />
+                            <t t-set="sum_credit" t-value="sum_credit+line.credit" />
+                            <tr >
+                                <td><span t-field="line.date"/></td>
+                                <td><span t-field="line.account_id.name"/></td>
+                                <td><span t-field="line.partner_id.name"/></td>
+                                <td><span t-field="line.name"/></td>
+                                <td class="text-right"><span t-field="line.debit" /></td>
+                                <!--<td class="text-right"><span t-field="line.credit" /></td>-->
+                            </tr>
+                        </t>
+                         <tr >
+                            <td colspan="4"><strong>Total:</strong></td>
+                            <td class="text-right"><strong><span t-esc="sum_debit" /></strong></td>
+                            <!--<td class="text-right"><strong><span t-esc="sum_credit" /></strong></td>-->
+                        </tr>
+                     </table>
+                     <br/>
+                     <br/>
+                     <table style="width:100%;">
+						<tr>
+							<th style="width:60%;">&#160;</th>
+							<th style="width:40%;">&#160;</th>
+						</tr>
+                        <tr>
+							<td class="text-left"/>
+							<td class="text-center">Authorised Signatory</td>
+						</tr>
+					</table>
+                     <br/>
+                     <table style="width:100%;">
+						<tr>
+							<th style="width:60%;">&#160;</th>
+							<th style="width:40%;">&#160;</th>
+						</tr>
+						<tr>
+							<td class="text-left"><span>Checked By :</span></td>
+							<td class="text-center">Verified By :</td>
+						</tr>
+					</table>
+                     </div>
+                </t>
+                </t>
+        </template>
+    </data>
+</odoo>

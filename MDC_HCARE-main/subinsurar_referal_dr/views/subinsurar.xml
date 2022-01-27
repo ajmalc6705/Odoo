@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="sub_insurar_view">
+		<field name="name">Sub Insurar</field>
+		<field name="model">sub.insurar</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+            <form string="Sub Insurar">
+				<sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+						<group/>
+                    </group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="sub_insurar_tree">
+		<field name="name">Sub Insurar</field>
+		<field name="model">sub.insurar</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string='Sub Insurar'>
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+
+    <record id="view_sub_insurar_filter" model="ir.ui.view">
+		<field name="name">Sub Insurar</field>
+		<field name="model">sub.insurar</field>
+		<field name="type">search</field>
+		<field name="arch" type="xml">
+			<search string="Search Sub Insurar">
+				<field name="name" />
+			</search>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window" id="medical_action_sub_insurar">
+		<field name="name">Sub Insurar</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">sub.insurar</field>
+		<field name="view_type">form</field>
+		<field name="view_id" ref="sub_insurar_tree" />
+	</record>
+    <menuitem name="Sub Insurar" id="medical_conf_sub_insurar" action="medical_action_sub_insurar"
+			parent="basic_insurance.medical_conf_insurances" sequence="8" />
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aks_employee_flight_ticket_req,access.aks.employee.flight.ticket.req,model_hr_flight_ticket,,1,1,1,1

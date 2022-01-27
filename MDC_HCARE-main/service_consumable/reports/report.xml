@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<report
+		id="report_service_consumables_pdf"
+		string="Material Consumption Report"
+		model="medical.appointment"
+		report_type="qweb-pdf"
+		menu="False"
+		file="service_consumable.report_service_consumables"
+		name="service_consumable.report_service_consumables"
+		/>
+
+	</data>
+</odoo>

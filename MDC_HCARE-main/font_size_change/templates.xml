@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="asset_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link href="/font_size_change/static/src/less/font.less" rel="stylesheet" type="text/less"/>
+        </xpath>
+    </template>
+</odoo>

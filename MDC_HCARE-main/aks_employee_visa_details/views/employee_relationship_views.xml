@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Relationship Form View -->
+    <record id="view_aks_employee_relation_form" model="ir.ui.view">
+        <field name="name">aks.employee.relation.form.view</field>
+        <field name="model">aks.employee.relation</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <form string="Relationship Form">
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="e.g. Spouse, Child, Parent etc ..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Relationship Tree view -->
+    <record id="view_aks_employee_relation_tree" model="ir.ui.view">
+        <field name="name">employee.relation.tree.view</field>
+        <field name="model">aks.employee.relation</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <tree string="Relationship Tree">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- action of the Relationship menu -->
+    <record id="action_employee_relationship" model="ir.actions.act_window">
+        <field name="name">Relationship</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">aks.employee.relation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create First Relationship
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_employee_relationship"
+            name="Relationship"
+            action="action_employee_relationship"
+            parent="hr.menu_human_resources_configuration"
+            groups="hr.group_hr_manager"
+    />
+
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="hr_salary_rule_overtime" model="hr.salary.rule">
+        <field name="code">OVTH</field>
+        <field name="name">Holiday Overtime</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = +(contract.wage / (worked_days.WORK100.number_of_hours+worked_days.GLOBAL.number_of_hours )) * worked_days.OVTH.number_of_hours * contract.overtime_hourly_rate_holiday</field>
+        <field name="sequence" eval="6"/>
+        <field name="note">
+            overtime = (Wage(in contract) / Total normal working Hours) * Total Holiday Overtime Hours * Holiday overtime rate
+        </field>
+    </record>
+
+    <record id="hr_salary_rule_overtime_working_day" model="hr.salary.rule">
+        <field name="code">OVTW</field>
+        <field name="name">Working Day Overtime</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = +(contract.wage / (worked_days.WORK100.number_of_hours+worked_days.GLOBAL.number_of_hours )) * worked_days.OVTW.number_of_hours * contract.overtime_hourly_rate_working_day</field>
+        <field name="sequence" eval="6"/>
+        <field name="note">
+            overtime = (Wage(in contract) / Total Normal working Hours) * Total Overtime Working Hours * Working Day overtime rate
+        </field>
+    </record>
+</data>
+</odoo>

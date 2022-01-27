@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="hr_holidays_inherited_view" model="ir.ui.view">
+        <field name="name">hr.holidays.inherited.view</field>
+        <field name="model">hr.holidays</field>
+        <field name="inherit_id" ref="hr_holidays.edit_holiday_new"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='holiday_status_id']" position="after">
+                <field name="leave_policies_id" options="{'no_create': True, 'no_create_edit':True}" attrs="{'invisible': [('type', '!=', 'add')]}" context="{'holiday_status_id':holiday_status_id, 'employee_id':employee_id}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

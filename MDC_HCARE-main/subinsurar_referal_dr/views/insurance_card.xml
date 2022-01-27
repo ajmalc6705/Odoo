@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="medical_insurance_tree" model="ir.ui.view">
+            <field name="name">Insurance List</field>
+			<field name="model">medical.insurance</field>
+			<field name="inherit_id" ref="basic_insurance.medical_insurance_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='group_name']" position="after">
+                    <field name="sub_insurar_id" />
+                    <field name="dom_subinsurar" invisible="1"/>
+                </xpath>
+            </field>
+      </record>
+
+      <record id="medical_insurance_view" model="ir.ui.view">
+            <field name="name">Insurance</field>
+			<field name="model">medical.insurance</field>
+			<field name="inherit_id" ref="basic_insurance.medical_insurance_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='deductible']" position="after">
+                    <field name="sub_insurar_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                    <field name="dom_subinsurar" invisible="1"/>
+                </xpath>
+            </field>
+    </record>
+
+</odoo>

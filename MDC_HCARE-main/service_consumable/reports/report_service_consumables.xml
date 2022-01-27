@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_service_consumables">
+            <t t-call="web.html_container">
+                    <t t-call="web.external_layout">
+                         <div class="page" style="font-size: 15px !important;">
+                             <div class="text-center">
+                                 <div style="color:#009688;">
+                                     <h2><b>MATERIAL CONSUMPTION REPORT</b></h2>
+                                 </div>
+                                 <center>
+                                     <table name="master" width="100%">
+                                        <colgroup>
+                                            <col width='25%' />
+                                            <col width='25%' />
+                                            <col width='25%' />
+                                            <col width='25%' />
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th/>
+                                                <th/>
+                                                <th/>
+                                                <th/>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="patient_invoice_tbody">
+                                            <tr>
+                                                <td style="color:#009688;"><strong>Period From</strong></td>
+                                                <td >: <span t-esc="date_from" t-options='{"widget": "date"}'/></td>
+                                                <td style="color:#009688;"><strong>Report Date</strong></td>
+                                                <td>: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%m/%d/%Y %H:%M')"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color:#009688;"><strong>Period To</strong></td>
+                                                <td >: <span t-esc="date_to" t-options='{"widget": "date"}'/></td>
+
+                                                <td style="color:#009688;"><strong>Doctors</strong></td>
+                                                <td>:
+                                                    <t t-if="dom_doc_name_list">
+                                                        <span t-esc="dom_doc_name_list"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        All
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color:#009688;">
+                                                    <strong>Departments</strong>
+                                                </td>
+                                                <td>:
+                                                    <t t-if="dom_dpmt_name_list">
+                                                        <span t-esc="dom_dpmt_name_list"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        All
+                                                    </t>
+                                                </td>
+                                                <td style="color:#009688;">
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br/>
+                                     <table class="table table-striped">
+                                        <colgroup>
+                                            <col width='5%'/>
+                                            <col width='20%'/>
+                                            <col width='20%'/>
+                                            <col width='40%'/>
+                                            <col width='15%'/>
+                                        </colgroup>
+                                        <thead style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;">
+                                            <tr>
+                                                <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;">Sl No.</th>
+                                                <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center">Date</th>
+                                                <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center">Visit Number</th>
+                                                <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center">Doctor</th>
+                                                <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center">Department</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="appointment_tbody" >
+                                            <t t-set="i" t-value="1" />
+                                            <t t-foreach="medical_appt" t-as="appt" >
+                                                <tr  style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;">
+                                                    <td style="color:white;background-color: 66c0b7;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center"><span t-esc="i"/><t t-set="i" t-value="i+1"/></td>
+                                                    <td style="color:white;background-color: 66c0b7;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center"><span t-esc="appt.appointment_sdate" t-options='{"widget": "date"}'/></td>
+                                                    <td style="color:white;background-color: 66c0b7;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center"><span t-esc="appt.name"/></td>
+                                                    <td style="color:white;background-color: 66c0b7;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center"><span t-esc="appt.doctor.name.name"/></td>
+                                                    <td style="color:white;background-color: 66c0b7;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" class="text-center"><span t-esc="appt.doctor.department_id.name"/></td>
+                                                </tr>
+                                                <tr t-foreach="appt.consumable_ids" t-as="consu" style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;">
+                                                    <td style="border-left: 1px solid black;border-right: 1px solid black;" class="text-center"></td>
+                                                    <td style="border-left: 1px solid black;border-right: 1px solid black;" class="text-center" colspan="2"><span t-esc="consu.product_tmpl_id.name"/></td>
+                                                    <td style="border-left: 1px solid black;border-right: 1px solid black;" class="text-center"><span t-esc="consu.consu_product_id.name"/></td>
+                                                    <td style="border-left: 1px solid black;border-right: 1px solid black;" class="text-center"><span t-esc="consu.quantity"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                 </center>
+                             </div>
+                         </div>
+                    </t>
+                </t>
+        </template>
+    </data>
+</odoo>
+

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- this is for Ticket Limit -->
+    <record id="employee_grade_form_view_inherit_ticket_limit" model="ir.ui.view">
+        <field name="name">employee.grade.form.inherit.ticket.limit</field>
+        <field name="model">hr.grade.grade</field>
+        <field name="inherit_id" ref="aks_employee_grade_master.employee_grade_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']"  position="after">
+                <group>
+                    <field name="ticket_limit"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

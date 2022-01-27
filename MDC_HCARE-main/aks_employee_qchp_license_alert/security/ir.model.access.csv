@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aks_employee_qchp_license_alert,access.aks.employee.qchp.license.alert,model_aks_employee_qchp_license,,1,1,1,1
+access_aks_employee_qchp_license_line_alert,access.aks.employee.qchp.license.line.alert,model_aks_employee_qchp_license_line,,1,1,1,1

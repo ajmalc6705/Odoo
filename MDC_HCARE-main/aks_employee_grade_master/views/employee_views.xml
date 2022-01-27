@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- this is for grade_id and rank_id in Employee form view -->
+    <record id="view_employee_form_inherit_grade_rank" model="ir.ui.view">
+        <field name="name">hr.employee.form.grade.rank</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="grade_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" readonly="1"/>
+                <field name="rank_id" options="{'no_create_edit': True, 'no_create': True, 'no_open': True}" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- this is for grade_id and rank_id in Employee tree view -->
+    <record id="view_employee_tree_inherit_grade_rank" model="ir.ui.view">
+        <field name="name">hr.employee.tree.grade.rank</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="grade_id"/>
+                <field name="rank_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- this is for grade_id and rank_id in Employee filter -->
+    <record id="view_employee_filter_inherit_grade_rank" model="ir.ui.view">
+        <field name="name">Employees Grade Rank</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <filter name="group_job" position="after">
+                <filter string="Grade" icon="terp-gtk-select-all" domain="[]"
+                        name ='grade' context="{'group_by':'grade_id'}"/>
+                <filter string="Rank" icon="terp-gtk-select-all" domain="[]"
+                        name='rank' context="{'group_by':'rank_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <!-- this is for grade_id and rank_id in Employee kanban view -->
+    <record id="hr_kanban_view_employee_inherit_grade_rank" model="ir.ui.view">
+        <field name="name">hr.employee.kanban.grade.rank</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <field name="arch" type="xml">
+            <xpath expr="//templates" position="before">
+                <field name="grade_id"/>
+                <field name="rank_id"/>
+            </xpath>
+            <xpath expr="//field[@name='work_phone']" position="after">
+                <li t-if="record.grade_id.raw_value">
+                    <field name="grade_id"/>
+                </li>
+                <li t-if="record.rank_id.raw_value">
+                    <field name="rank_id"/>
+                </li>
+            </xpath>
+        </field>
+    </record>
+</odoo>

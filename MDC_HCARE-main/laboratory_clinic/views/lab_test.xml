@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_lab_form1">
+        <field name="name">product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="pragtech_dental_management.view_product_form1"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <page name="Inventory1" position="after">
+                <page string="Lab Pricelist" name="Lab Price" >
+                    <group string="Laboratory" name="Laboratory" >
+                        <field name="seller_ids" nolabel="1"/>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+
+</odoo>

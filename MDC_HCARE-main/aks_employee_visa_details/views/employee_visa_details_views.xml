@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- this is for Visa Details Page -->
+    <record id="view_employee_form_inherit_visa_details" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.visa.details</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='hr_settings']"  position="after">
+                <page string="Visa Details" name="hr_visa_details">
+                    <field
+                        name="employee_visa_details_ids"
+                        widget="section_and_note_one2many"
+                        mode="tree">
+                        <tree string="Visa Details Lines" editable="bottom">
+                            <field name="visa_name"/>
+                            <field name="visa_type"/>
+                            <field name="type"/>
+                            <field name="relation"/>
+                            <field name="family_member"/>
+                            <field name="date_of_birth"/>
+                            <field name="gender"/>
+                            <field name="mobile_no"/>
+                            <field name="issued_date"/>
+                            <field name="expiry_date"/>
+                            <field name="country_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Visa Type Form View -->
+    <record id="view_aks_employee_visa_type_form" model="ir.ui.view">
+        <field name="name">aks.employee.visa.type.form.view</field>
+        <field name="model">aks.visa.type</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <form string="Visa Type Form">
+                <sheet>
+                    <group>
+                        <field name="name" placeholder="e.g. Visiting, Job, Student etc ..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Visa Type Tree view -->
+    <record id="view_aks_employee_visa_type_tree" model="ir.ui.view">
+        <field name="name">employee.visa.type.tree.view</field>
+        <field name="model">aks.visa.type</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <tree string="Visa Type Tree">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- action of the Visa Type menu -->
+    <record id="action_employee_visa_type" model="ir.actions.act_window">
+        <field name="name">Visa Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">aks.visa.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create First Visa Type
+            </p>
+        </field>
+    </record>
+
+    <!-- Visa Type Menu under Configuration -->
+    <menuitem
+            id="menu_employee_visa_type"
+            name="Visa Type"
+            action="action_employee_visa_type"
+            parent="hr.menu_human_resources_configuration"
+            groups="hr.group_hr_manager"
+    />
+
+</odoo>

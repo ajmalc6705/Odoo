@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <record id="group_confirm_flight_ticket" model="res.groups">
+            <field name="name">Approve Flight Ticket</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+    </data>
+</odoo>

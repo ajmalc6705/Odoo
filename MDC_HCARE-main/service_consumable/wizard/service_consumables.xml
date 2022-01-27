@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="patient_service_consumable_wizard" model="ir.ui.view">
+            <field name="name">service.consumable.report</field>
+            <field name="model">service.consumable.report</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <form string="Material Consumption Report">
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="is_only_doctor" invisible="1"/>
+                            <field name="department_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                            <field name="doctor_ids" widget="many2many_tags" attrs="{'required':[('is_only_doctor', '=', True)]}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="button_patient_top" string="Print Report" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_service_consumable_report" model="ir.actions.act_window">
+                <field name="name">Material Consumption Report</field>
+                <field name="res_model">service.consumable.report</field>
+                <field name="view_mode">form</field>
+                <field name="view_id" ref="patient_service_consumable_wizard"/>
+                <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_doctor_service_consumable_report" name="Material Consumption Report"
+                  action="action_service_consumable_report"
+                  groups="service_consumable.group_consumable_mgmnt_user_menu"
+                  parent="pragtech_dental_management.dental_report_menu" sequence="50"/>
+
+    </data>
+</odoo>

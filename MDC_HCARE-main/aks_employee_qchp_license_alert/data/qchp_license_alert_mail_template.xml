@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="qchp_license_alert_template" model="mail.template">
+        <field name="name">QCHP License Alert</field>
+        <field name="model_id" ref="model_aks_employee_qchp_license"/>
+        <field name="subject">${object.company_id.name} QCHP License Alert</field>
+        <field name="email_from">"${object.employee_id.company_id.name|safe}"&lt;${(object.employee_id.company_id.email)|safe}&gt;</field>
+        <field name="email_to">${object.employee_id.work_email}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 5px; padding: 2px; font-size: 14px;">
+                    Dear ${object.employee_id.name},
+                    <br/><br/>
+                    I hope you’re doing well!
+                    <br/>
+                    Your QCHP License will expire soon
+                    <br/><br/>
+                    Please don't hesitate to get in touch if you have any questions or need clarifications.
+                    <br/><br/>
+                    Do well and Stay Safe
+                    <br/>
+                    Thank You
+                </p>
+            </div>
+        </field>
+        <field name="lang">${object.employee_id.lang}</field>
+        <field name="auto_delete" eval="False" />
+    </record>
+</odoo>

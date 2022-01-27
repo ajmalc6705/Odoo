@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_treatment_plan_multi_pdf">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="text-center">
+                                <div style="color:#009688;">
+                                    <h2>
+                                        <b>Treatment Plan</b>
+                                    </h2>
+                                </div>
+                                <table style="width:100%;">
+                                    <tr>
+                                        <th style="width:60%;"></th>
+                                        <th style="width:40%;"></th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="color:#009688;">
+                                                <strong>Patient Name :</strong>
+                                            </div>
+<!--                                            <p t-if="o.patient_name" t-esc="doc"/>-->
+<!--                                            <p t-if="o.patient_name" t-esc="o"/>-->
+                                            <p t-if="o.appt_id" t-field="o.appt_id.patient"/>
+                                        </td>
+                                        <td>
+                                            <div style="color:#009688;">
+                                                <strong>Doctor Name :</strong>
+                                            </div>
+                                            <p t-if="o.appt_id.doctor" t-field="o.appt_id.doctor"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="color:#009688;">
+                                                <strong>Appointment :</strong>
+                                            </div>
+                                            <p t-field="o.appt_id.name"/>
+                                        </td>
+                                        <td>
+                                            <div style="color:#009688;">
+                                                <strong>Date Approved :</strong>
+                                            </div>
+                                            <p t-if="o.updated_date" t-field="o.updated_date"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="table table-bordered table-striped"  style="width: 100%">
+                                    <thead>
+                                        <th style='color:white;background-color: #009688;text-align:center;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;' width='7%'>Sl No.</th>
+                                        <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='8%'>Ref No.</th>
+                                        <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='8%'>Child</th>
+                                        <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='20%'>Description</th>
+                                        <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='20%'>Diagnosis</th>
+                                        <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='8%'>Tooth</th>
+                                        <!--<th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='10%'>Surface</th>-->
+                                        <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='17%'>Actual Amount</th>
+                                        <th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='17%'>After Disc.</th>
+                                        <!--<th style="color:white;background-color: #009688;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;" width='17%'>Payment by Patient</th>-->
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="i" t-value="1" />
+                                        <t t-set="amt_total" t-value="0" />
+                                        <t t-set="disc_total" t-value="0" />
+                                        <t t-set="patient_total" t-value="0" />
+                                        <t t-set="i" t-value="1" />
+                                        <tr t-foreach="operation_ids" t-as="l">
+
+                                                <td style='text-align:center;border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;'><span t-esc="i"/><t t-set="i" t-value="i+1"/></td>
+                                                <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><span t-if="l.treatment_plan_number" t-field="l.treatment_plan_number"/></td>
+                                                <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;">
+                                                    <t t-if="l.child">
+                                                        <input type="checkbox" checked="True"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <input type="checkbox"/>
+                                                    </t>
+                                                </td>
+                                                <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><span t-if="l.description" t-field="l.description"/></td>
+                                                <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><span t-if="l.diagnosis_id" t-field="l.diagnosis_id"/></td>
+                                                <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;">
+                                                    <t t-foreach="l.teeth_code_rel" t-as="tooth">
+                                                        <span t-esc="tooth.name_get()[0][1]"/>
+                                                        <br/>
+                                                    </t>
+                                                </td>
+                                                <!--<td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><span t-if="l.detail_description" t-field="l.detail_description"/></td>-->
+                                                <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><span t-if="l.actual_amount" t-field="l.actual_amount"/><t t-set="amt_total" t-value="l.actual_amount+amt_total"/></td>
+                                                <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;">
+                                                    <t t-set="amt" t-value="l.amount"/>
+                                                    <t t-if="l.discount_fixed_percent == 'Fixed'">
+                                                        <t t-set="amt" t-value="l.actual_amount - l.discount_value"/>
+                                                    </t>
+                                                    <t t-if="l.discount_fixed_percent == 'Percent'">
+                                                        <t t-set="amt" t-value="l.actual_amount * (100 - l.discount) / 100"/>
+                                                    </t>
+                                                    <span t-esc="amt"/>
+                                                    <t t-set="disc_total" t-value="amt+disc_total"/>
+                                                </td>
+                                                <!--<td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><span t-if="l.amt_to_be_patient" t-field="l.amt_to_be_patient"/><t t-set="patient_total" t-value="l.amt_to_be_patient+patient_total"/></td>-->
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><strong>Total</strong></td>
+                                            <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><strong><span t-esc="amt_total"/></strong></td>
+                                            <td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><strong><span t-esc="disc_total"/></strong></td>
+                                            <!--<td style="border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;border-bottom:1px solid #000000;"><strong><span t-esc="patient_total"/></strong></td>-->
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="text-left">
+                                    <span t-raw="o.company_id.treatment_plan_content"/>
+                                </div>
+                                <div t-if="o.plan_signature" class="pull-right">
+                                    <strong>Patient Signature</strong>
+                                    <br/>
+                                    <img t-if="o.plan_signature"
+                                         t-att-src="'data:image/png;base64,%s' % to_text(o.plan_signature)"
+                                         class="pull-right" height="60"/>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <report
+                id="report_treatment_plan3_pdf"
+                string="Treatment Plan"
+                model="treatment.plan.wizard"
+                report_type="qweb-pdf"
+                file="treatment_plan_mdc.report_treatment_plan_multi_pdf"
+                name="treatment_plan_mdc.report_treatment_plan_multi_pdf"
+                menu="False"
+        />
+
+
+    </data>
+</odoo>
