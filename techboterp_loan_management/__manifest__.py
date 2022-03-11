@@ -25,7 +25,7 @@
     ],
     'demo': [],
     'images': ['static/description/techbot_loan_management.jpg'],
-    "price": 50,
+    "price": 80,
     "currency": "EUR",
     'installable': True,
     'application': True,
