@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--<menuitem action="fleet.fleet_vehicle_action" parent="sales_team.menu_sales" id="fleet_vehicle_sales_menu"/>-->
+
+    <record model="ir.ui.view" id="view_order_inherit_form_view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//header" position="inside">-->
+            <!--                    <button name="submit_for_approval" string="Submit for Approval" type="object" class="oe_highlight"-->
+            <!--                            states="draft"-->
+            <!--                            groups="sales_team.group_sale_salesman"/>-->
+            <!--                    <button name="action_approve_button" string="Approve" type="object" class="oe_highlight"-->
+            <!--                            groups="approval_system.group_all_approval"-->
+            <!--                            attrs="{'invisible': [('state', 'not in', ['waiting_for_approval'])]}"/>-->
+            <!--                    <button name="action_confirm" string="Confirm" type="object" class='oe_highlight'-->
+            <!--                            attrs="{'invisible': [('state', 'not in', ['approved','sent'])]}"/>-->
+            <!--                    <button name="button_create_invoice" string="Create Invoice" type="object" class='oe_highlight'/>-->
+            <!--                </xpath>-->
+
+            <button name="action_quotation_send" position="after">
+                <button name="print_quotation_jc" string="Job Card" type="object" groups="base.group_user"
+                        class="btn-primary"/>
+            </button>
+
+            <!-- Customer Signature             -->
+            <xpath expr="//field[@name='signature']" position="attributes">
+                <attribute name="widget">signature</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='customer_signature']" position="after">
+                <page string="Approval Signature" name="approval_signature" groups="base.group_no_one">
+                    <group>
+                        <field name="digital_signature" widget="signature"/>
+                        <!--                        attrs="{'invisible':[('state', 'not in', ('waiting_for_approval'))]}"-->
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//group[@name='sale_header']" position="before">
+                <group name="Insurance_details" string="INSURANCE DETAILS">
+                    <group>
+                        <field name="insurance_company_id"/>
+                        <field name="claim_no"/>
+
+                    </group>
+                </group>
+            </xpath>
+
+            <xpath expr="//group[@name='sale_header']" position="after">
+                <group name="customer_details">
+                    <group>
+                        <field name="mobile"/>
+                        <field name="email"/>
+                        <field name="out_date"/>
+                    </group>
+
+                    <group string="Vehicle Details">
+                        <field name="vehicle_model"/>
+                        <field name="vehicle_no_plate"/>
+                        <field name="vin_sn"/>
+                        <field name="vehicle_reg_date"/>
+                        <field name="vehicle_km"/>
+
+                    </group>
+
+                    <group>
+                        <field name="user_id" string="Advisor"/>
+                        <field name="diagnostic_test_id"/>
+                    </group>
+
+                    <group>
+                        <!--                        <label for="service_contract_yes" string="Service Contract"/>-->
+                        <label for="service_contract" string="Service Contract"/>
+                        <field name="service_contract" readonly="1"/>
+                        <!--                        <div class="o_row">-->
+                        <!--                            <span>Yes</span>-->
+                        <!--                            <field name="service_contract_yes"/>-->
+                        <!--                            <span>No</span>-->
+                        <!--                            <field name="service_contract_no"/>-->
+                        <!--                        </div>-->
+                    </group>
+
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

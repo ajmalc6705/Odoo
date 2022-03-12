@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_fleet" model="ir.actions.report">
+            <field name="name">Customer Report</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">techbot_motor_garage.report_vehicle_check_documents</field>
+            <field name="report_file">techbot_motor_garage.report_vehicle_check_documents</field>
+            <field name="binding_model_id" ref="model_fleet_vehicle"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

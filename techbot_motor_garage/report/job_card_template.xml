@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="tmg_job_card_report" name="TMG External Layout Header">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+
+                    <!--        <xpath expr="div" position="replace">-->
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!--                        &lt;!&ndash;<img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px;"/>&ndash;&gt;-->
+                                <img style="width: 350px; margin: 0 auto; display:block; text-align:center"
+                                     class="align-center;" src="/techbot_motor_garage/static/src/img/techboterp.png"/>
+                                <!--                        &lt;!&ndash;<img style="width: 350px; margin: 0 auto; display:block; text-align:center" class="align-center;" src="/british_car_care/static/src/img/letter_head_02.jpg"  />&ndash;&gt;-->
+
+                            </div>
+                            <!--                    &lt;!&ndash;<div class="col-xs-9 text-right" style="margin-top:20px;" t-field="company.rml_header1" />&ndash;&gt;-->
+                        </div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <strong>Customer Details:</strong>
+                                </th>
+                                <th>
+                                    <strong>Advisor</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span t-field="o.partner_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                </td>
+                                <td>
+                                    <span t-field="o.user_id"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div class="page">
+
+                        <h2 style="text-align: center; font-weight: bold;">JOB CARD</h2>
+                        <br/>
+
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th style="border: 2px double #c9cacc; text-align: center;padding: 5px;background-color: #9e9e9e;color:White;">
+                                        Plate Number
+                                    </th>
+                                    <th style="border: 2px double #c9cacc; text-align: center;padding: 5px;background-color: #9e9e9e;color:White;">
+                                        Vehicle Model
+                                    </th>
+                                    <th style="border: 2px double #c9cacc; text-align: center;padding: 5px;background-color: #9e9e9e;color:White;">
+                                        Chassis Number
+                                    </th>
+                                    <th style="border: 2px double #c9cacc; text-align: center;padding: 5px;background-color: #9e9e9e;color:White;">
+                                        Year
+                                    </th>
+                                    <th style="border: 2px double #c9cacc; text-align: center;padding: 5px;background-color: #9e9e9e;color:White;">
+                                        KM
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td class="text-center"
+                                        style="border: 2px double #c9cacc;text-align: center;padding: 5px;">
+                                        <span t-field="o.vehicle_no_plate"/>
+                                    </td>
+                                    <td class="text-center"
+                                        style="border: 2px double #c9cacc;text-align: center;padding: 5px;">
+                                        <span t-field="o.vehicle_model"/>
+                                    </td>
+                                    <td class="text-center"
+                                        style="border: 2px double #c9cacc;text-align: center;padding: 5px;">
+                                        <span t-field="o.vin_sn"/>
+                                    </td>
+                                    <td class="text-center"
+                                        style="border: 2px double #c9cacc;text-align: center;padding: 5px;">
+                                        <span t-field="o.vehicle_reg_date"/>
+                                    </td>
+                                    <td class="text-center"
+                                        style="border: 2px double #c9cacc;text-align: center;padding: 5px;">
+                                        <span t-field="o.vehicle_km"/>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <th class="text-center"
+                                    style="font-size: 20px; font-weight: bold; border: 2px solid #a4a8ad;padding: 5px;"
+                                    colspan="6">
+                                    <span t-field="o.name"/>
+                                </th>
+                            </tr>
+                            <tr style="background-color: #9e9e9e">
+                                <!--                                <th class="text-center" style="border: 2px solid #c9cacc;color:White;padding: 5px;">No.</th>-->
+                                <th class="text-center" style="border: 2px solid #c9cacc;color:White;padding: 5px;">
+                                    Service Description Details
+                                </th>
+                                <!--<th class="text-center" style="border: 1px solid #c9cacc;color:White;padding: 5px;">Qty</th>-->
+                                <!--                                <th name="th_description" class="text-left">Description</th>-->
+                            </tr>
+                        </thead>
+
+                        <tbody class="sale_tbody">
+                            <t t-foreach="o.order_line" t-as="line">
+                                <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                    <t t-if="not line.display_type">
+                                        <td name="td_name" width="5%"
+                                            style="border: 2px double #c9cacc;text-align: left;padding: 5px;">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td name="td_name" width="5%"
+                                    style="border: 2px double #c9cacc;text-align: left;padding: 5px;">
+                                    <span t-field="o.note"/>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                    <div class="footer">
+                        <div>
+                            <table width="100%">
+                                <thead>
+                                    <tr>
+                                        <!--                                    <t t-set="company" t-value="company.sudo()"/>-->
+                                        <!--<th style="border: 2px double #c9cacc; text-align: center;padding: 5px;background-color:Black;color:White;">Phone: <span t-field="company.phone"/></th>-->
+                                        <th style="text-align: center;padding: 5px;background-color:Black;color:White;">
+                                            <span class="fa fa-phone"/>
+                                            +971 50 672 7936 | +971 4 559 8088
+                                        </th>
+                                        <th style="text-align: center;padding: 5px;background-color:Black;color:White;">
+                                            <span class="fa fa-envelope"/>
+                                            care@techboterp.com
+                                        </th>
+                                        <th style="text-align: center;padding: 5px;background-color:Black;color:White;">
+                                            <span class="fa fa-website"/>
+                                            https://techboterp.com/
+                                        </th>
+                                        <!--                            <th style="text-align: center;padding: 5px;background-color:Black;color:White;"><span class="fa fa-twitter"/> q_bcc </th>-->
+                                        <th style="text-align: center;padding: 5px;background-color:Black;color:White;">
+                                            <span class="fa fa-map-marker"/>
+                                            Dubai
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
