@@ -1,4 +1,4 @@
-odoo.define("pos_arabic_receipt.models", function (require) {
+odoo.define("pos_arabic_receipt_v14.models", function (require) {
 "use strict";
 
 var models = require('point_of_sale.models');
