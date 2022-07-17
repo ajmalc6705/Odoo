@@ -1,0 +1,34 @@
+<odoo>
+<!--    Sending Email from Fleet Vehicle Based on the Customer/Client/Driver Check in Report-->
+    <record id="fleet_email_template" model="mail.template">
+        <field name="name">Vehicle Check - Send by Email</field>
+        <field name="model_id" ref="techbot_motor_garage.model_fleet_vehicle"/>
+        <field name="subject">{{ object.company_id.name }} Vehicle (Ref {{object.name or 'n/a'}})</field>
+        <field name="email_from">{{ (object.company_id.email or company_id.email) }}</field>
+        <field name="partner_to">{{ object.driver_id.id }}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 5px; padding: 2px; font-size: 14px;">
+                    Dear <strong t-out="object.driver_id.name"/> ,
+                    <br/>
+                    <br/>
+                    Please Find Attachment for your Vehicle  <strong t-out="object.name"/> Check report
+
+                    from
+                    <strong t-out="object.company_id.name"/>
+                    <br/>
+                    You can replay to this mail if you have any questions;
+                    <br/>
+                    <br/>
+                    Do well and Stay Safe
+                    <br/>
+                    Thank You
+                </p>
+            </div>
+        </field>
+        <field name="report_template" ref="techbot_motor_garage.action_report_fleet"/>
+        <field name="report_name">Vehicle</field>
+        <field name="lang">{{ object.driver_id.lang }}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+</odoo>

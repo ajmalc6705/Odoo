@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_vehicle_check_documents">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <style>
+							.main-head{
+							text-align: center;
+							font-size: larger;
+							font-weight: bold;
+							background: #ed5965;
+							margin-top: 25px;
+							margin-left: 28%;
+							margin-right: 18%;
+							border-radius: 5px;
+							padding: 2px;
+							}
+							.text{
+							text-align: center;
+							margin: 1px ;
+							}
+							.bold{
+							font-weight: bold;
+							}
+							.sub-head{
+							background: #e6e6e6;
+							padding : 10px
+
+							font-weight: bold;
+							}
+							table {
+								border-collapse: separate;
+
+							}
+							td {
+								padding: 10px;
+							}
+							.head-td{
+							padding-left : 10px ! important;
+							padding: 0px 0;
+							margin-left: 50px;
+                            border:1px;
+							}
+							tr.spaceUnder>td {
+							  padding-bottom: 10em;
+                              padding-right: 2em;
+							}
+					</style>
+
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <group>
+                                    <group>Customer Name:
+                                        <t t-esc="doc.driver_id.name"/>
+                                        <br/>
+                                    </group>
+                                    <group>
+                                        Mob:
+                                        <t t-esc="doc.driver_id.mobile"/>
+                                        <br/>
+                                        Email:
+                                        <t t-esc="doc.driver_id.email"/>
+<!--                                        <div class="header">
+						<img style="width:100%" t-if="o.company_id.quotation_header" t-att-src="image_data_uri(o.company_id.quotation_header)" alt="Logo"/>
+					</div>-->
+
+                                    </group>
+                                </group>
+                                <div>Address :
+                                    <p>
+                                        <t t-esc="doc.driver_id.street"/>
+                                        <br/>
+                                        <t t-esc="doc.driver_id.street2"/>
+                                        <br/>
+                                        <t t-esc="doc.driver_id.city"/>
+                                        <br/>
+                                        <t t-esc="doc.driver_id.country_id.name"/>
+                                        <br/>
+                                        <t t-esc="doc.driver_id.zip"/>
+                                    </p>
+                                    <!--                                         Mob : <t t-esc="doc.contact"/>-->
+                                </div>
+<!--                                <div>-->
+<!--                                    <table>-->
+<!--                                        <thead>-->
+<!--                                            <tr>-->
+<!--                                                <th name="th_inet_ext">Interior and Exterior</th>-->
+<!--                                                <th name="th_inet_ext">Engine Compartment</th>-->
+<!--                                                <th name="th_inet_ext">ABDSD</th>-->
+<!--                                                <th name="th_inet_ext">QWERTY</th>-->
+<!--                                            </tr>-->
+<!--                                        </thead>-->
+
+<!--                                        <tbody>-->
+<!--                                            <tr>-->
+<!--                                                <td>-->
+<!--                                                    <strong>Instrument Cluster Light :-->
+<!--                                                        <span t-field="doc.inst_cluster_light"/>-->
+<!--                                                    </strong>-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    <strong>Instrument Cluster Light :-->
+<!--                                                        <span t-field="doc.inst_cluster_light"/>-->
+<!--                                                    </strong>-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    <strong>Instrument Cluster Light :-->
+<!--                                                        <span t-field="doc.inst_cluster_light"/>-->
+<!--                                                    </strong>-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    <strong>Instrument Cluster Light :-->
+<!--                                                        <span t-field="doc.inst_cluster_light"/>-->
+<!--                                                    </strong>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+
+<!--                                            <tr>-->
+<!--                                                <td>-->
+<!--                                                    <strong>Instrument Cluster Light :-->
+<!--                                                        <span t-field="doc.inst_cluster_light"/>-->
+<!--                                                    </strong>-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    <strong>Instrument Cluster Light :-->
+<!--                                                        <span t-field="doc.inst_cluster_light"/>-->
+<!--                                                    </strong>-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    <strong>Instrument Cluster Light :-->
+<!--                                                        <span t-field="doc.inst_cluster_light"/>-->
+<!--                                                    </strong>-->
+<!--                                                </td>-->
+<!--                                                <td>-->
+<!--                                                    <strong>Instrument Cluster Light :-->
+<!--                                                        <span t-field="doc.inst_cluster_light"/>-->
+<!--                                                    </strong>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+                                <table class="table table-bordered font-weight-bold" style="border:1px solid black;" width="100%">
+                                    <tr width="100%">
+                                        <thead>
+                                            <th name="th_car_image_left" class="text-center">Left View</th>
+                                            <th name="th_car_image_right" class="text-center"> Right View</th>
+<!--                                            <th name="th_car_image_top" class="text-center">Vehicle Top View</th>-->
+                                            <th name="th_car_image_rear" class="text-center"> Rear View</th>
+                                            <th name="th_image_front" class="text-center"> Front View</th>
+
+                                        </thead>
+
+                                        <tbody>
+                                            <td width="25%">
+                                                <p style="text-align:center; padding:-top:10px;">
+                                                    <!--                                                     <img f-if="not doc.right_image"-->
+                                                    <!--                                                          t-att-src="'web/static/img/placeholder.png'" height="140"-->
+                                                    <!--                                                          border="1" width="120"/>-->
+                                                    <img f-if="doc.right_image"
+                                                         t-att-src="'data:image/png;base64,%s' % to_text(doc.left_image)"
+                                                         height="140"  width="180"/>
+                                                </p>
+                                            </td>
+
+                                            <td width="25%">
+                                                <p style="text-align:center; padding:-top:10px;">
+                                                    <img f-if="doc.right_image"
+                                                         t-att-src="'data:image/png;base64,%s' % to_text(doc.right_image)"
+                                                         height="140" width="180"/>
+                                                </p>
+                                            </td>
+                                            <td width="25%">
+                                                <p style="text-align:center; padding:-top:10px;">
+
+                                                    <img f-if="doc.right_image"
+                                                         t-att-src="'data:image/png;base64,%s' % to_text(doc.back_image)"
+                                                         height="140"  width="180"/>
+                                                </p>
+                                            </td>
+
+                                            <td width="25%">
+                                                <p style="text-align:center; padding:-top:10px;">
+                                                    <!-- <img f-if="not doc.right_image"  t-att-src="'web/static/img/placeholder.png'" height="140" border="1" width="120"/>-->
+                                                    <img f-if="doc.right_image"
+                                                         t-att-src="'data:image/png;base64,%s' % to_text(doc.front_image)"
+                                                         height="140"  width="180"/>
+                                                </p>
+                                            </td>
+                                        </tbody>
+                                    </tr>
+                                </table>
+
+                                 <table style="border:3px solid black;">
+                                    <thead>
+                                        <tr>
+                                            <th name="th_inet_ext">Interior and Exterior</th>
+                                            <th name="th_inet_ext">Engine Compartment</th>
+                                            <th name="th_inet_ext">Vehicle Check ( Vehicle on floor ) </th>
+                                            <th name="th_inet_ext">Body and Pain Check</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="sale_tbody">
+                                        <tr>
+                                            <td>
+                                                Instrument Cluster Light : <span t-field="doc.inst_cluster_light"/>
+                                            </td>
+                                            <td>
+                                                visual_leaks : <span t-field="doc.visual_leaks"/>
+                                            </td>
+                                            <td>
+                                                Instrument Cluster Light : <span t-field="doc.inst_cluster_light"/>
+                                            </td>
+                                            <td>
+                                                Instrument Cluster Light : <span t-field="doc.inst_cluster_light"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Instrument Cluster Light : <span t-field="doc.int_light"/>
+                                            </td>
+                                            <td>
+                                                engine_oil : <span t-field="doc.engine_oil"/>
+                                            </td>
+                                            <td>
+                                                Instrument Cluster Light : <span t-field="doc.inst_cluster_light"/>
+                                            </td>
+                                            <td>
+                                                Instrument Cluster Light : <span t-field="doc.inst_cluster_light"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Steering Wheel/Play : <span t-field="doc.steering_wheel"/>
+                                            </td>
+                                            <td>
+                                                power_steering_oil : <span t-field="doc.power_steering_oil"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                AC System : <span t-field="doc.ac_system"/>
+                                            </td>
+                                            <td>
+                                                break_fluid_oil : <span t-field="doc.break_fluid_oil"/>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Safety Belt/Lock : <span t-field="doc.safety_belt"/>
+                                            </td>
+                                            <td>
+                                                coolant_fluid_oil : <span t-field="doc.coolant_fluid_oil"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Parking Break S/M : <span t-field="doc.parking_brake"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="doc.wind_shield_fluid_oil"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Roof S/M : <span t-field="doc.sliding_roof"/>
+                                            </td>
+                                             <td>
+                                                V Belt : <span t-field="doc.v_belt"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Vanity Mirror : <span t-field="doc.vanity_mirror"/>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Door Handle : <span t-field="doc.door_handle"/>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Seats : <strong><span t-field="doc.seat"/></strong>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Shift Level : <strong><span t-field="doc.shift_level"/></strong>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Inner Door : <strong><span t-field="doc.inner_door_panel"/></strong>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Side Mirror : <strong><span t-field="doc.side_mirror"/></strong>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Floor Mate : <strong><span t-field="doc.floor_mate"/></strong>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Navigation DVD : <strong><span t-field="doc.navigation_dvd"/></strong>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Roller blind : <strong><span t-field="doc.roller_blind"/></strong>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+
+
+
+
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer">
+                        <div>
+                            <table width="100%">
+                                <thead>
+                                    <tr>
+                                        <!--                                    <t t-set="company" t-value="company.sudo()"/>-->
+                                        <!--<th style="border: 2px double #c9cacc; text-align: center;padding: 5px;background-color:Black;color:White;">Phone: <span t-field="company.phone"/></th>-->
+                                        <th style="text-align: center;padding: 5px;background-color:Black;color:White;">
+                                            <span class="fa fa-phone"/>
+                                            +971 50 672 7936 | +971 4 559 8088
+                                        </th>
+                                        <th style="text-align: center;padding: 5px;background-color:Black;color:White;">
+                                            <span class="fa fa-envelope"/>
+                                            care@techboterp.com
+                                        </th>
+                                        <th style="text-align: center;padding: 5px;background-color:Black;color:White;">
+                                            <span class="fa fa-website"/>
+                                            https://techboterp.com/
+                                        </th>
+                                        <!--                            <th style="text-align: center;padding: 5px;background-color:Black;color:White;"><span class="fa fa-twitter"/> q_bcc </th>-->
+                                        <th style="text-align: center;padding: 5px;background-color:Black;color:White;">
+                                            <span class="fa fa-map-marker"/>
+                                            Dubai
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+        <!--                        <h1>Sale Details</h1>-->
+        <!--                        <table class="table table-bordered mb64">-->
+        <!--                            <thead>-->
+        <!--                                <tr>-->
+        <!--                                    <th name="th_productname" class="text-center">Product Name</th>-->
+        <!--                                    <th name="th_quantity" class="text-center">QTY</th>-->
+        <!--                                    <th name="th_priceunit" class="text-center">Unit Price</th>-->
+        <!--                                    <th name="th_subtotal" class="text-center">GTotal</th>-->
+        <!--                                    <th name="th_discount" class="text-right"><span>Dis.%</span></th>-->
+        <!--                                    <th name="th_discamount" class="text-right">Dis</th>-->
+        <!--                                    <th name="th_taxespercentage" class="text-right">Vat%</th>-->
+        <!--                                    <th name="th_totaltaxe" class="text-right">Vat</th>-->
+        <!--                                    <th name="th_priceunit" class="text-right">NetTotal</th>-->
+        <!--                                </tr>-->
+        <!--                            </thead>-->
+        <!--                            <tbody class="sale_tbody">-->
+        <!--&lt;!&ndash;                                <t t-set="sub_total" t-value="0"/>&ndash;&gt;-->
+        <!--                                <t t-foreach="doc.sales_details_line_ids" t-as="line" class="text-right">-->
+        <!--                                    <tr>-->
+        <!--                                        <td><t t-esc="line.product_id.name"/></td>-->
+        <!--                                        <td><t t-esc="line.qty"/></td>-->
+        <!--                                        <td><t t-esc="line.pro_price"/></td>-->
+        <!--                                        <td><t t-esc="line.grand_total"/></td>-->
+        <!--                                        <td><t t-esc="line.dis_perc"/></td>-->
+        <!--                                        <td><t t-esc="line.dis"/></td>-->
+        <!--                                        <td><t t-esc="line.vat_perc"/></td>-->
+        <!--                                        <td><t t-esc="line.vat_amount"/></td>-->
+        <!--                                        <td><t t-esc="line.net_total"/></td>-->
+        <!--                                    </tr>-->
+        <!--                                </t>-->
+        <!--                            </tbody>-->
+        <!--                        </table>-->
+
+        <!--                        <div class="clearfix" name="so_total_summary">-->
+        <!--                            <div id="total" class="row" name="total">-->
+        <!--                                <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">-->
+        <!--                                    <table class="table table-sm">-->
+        <!--                                        <tr class="border-black o_subtotal" style="">-->
+        <!--                                            <td name="td_amount_untaxed_label"><strong>Subtotal  :</strong></td>-->
+        <!--                                            <td name="td_amount_untaxed" class="text-right">-->
+        <!--                                                <span t-field="doc.sub_total"/>-->
+        <!--                                            </td>-->
+        <!--                                        </tr>-->
+
+        <!--                                        <tr class="text-right o_price_total" style="">-->
+        <!--                                            <td name="td_total_discount_amount_label"><strong>Total Disc. :</strong></td>-->
+        <!--                                            <td name="td_total_discount_amount" class="text-right">-->
+        <!--                                                <span t-field="doc.item_dis"/>-->
+        <!--                                            </td>-->
+        <!--                                        </tr>-->
+
+        <!--                                        <tr class="text-right o_price_total" style="">-->
+        <!--                                            <td name="td_total_vat_amount_label"><strong>Total VAT. :</strong></td>-->
+        <!--                                            <td name="td_total_vat_amount" class="text-right">-->
+        <!--                                                <span t-field="doc.add_vat"/>-->
+        <!--                                            </td>-->
+        <!--                                        </tr>-->
+
+        <!--                                        <tr class="text-right o_price_total" style="">-->
+        <!--                                            <td name="td_total_round_off_label"><strong>Round Off. :</strong></td>-->
+        <!--                                            <td name="td_total_discount_amount" class="text-right">-->
+        <!--                                                <span t-field="doc.round_off"/>-->
+        <!--                                            </td>-->
+        <!--                                        </tr>-->
+
+        <!--                                        <tr class="border-black o_subtotal" style="">-->
+        <!--                                            <td name="td_total_net_amount_label"><strong>Net Amount. :</strong></td>-->
+        <!--                                            <td name="td_total_net_amount" class="text-right">-->
+        <!--                                                <span t-field="doc.net_total_amount"/>-->
+        <!--                                            </td>-->
+        <!--                                        </tr>-->
+        <!--                                    </table>-->
+        <!--                                </div>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+
+        <!--        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />-->
+        <!--        <t t-set="address">-->
+        <!--            <div t-field="doc.partner_id"-->
+        <!--                t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />-->
+        <!--            <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.partner_id.vat"/></p>-->
+        <!--        </t>-->
+        <!--        <t t-if="doc.partner_shipping_id == doc.partner_invoice_id-->
+        <!--                             and doc.partner_invoice_id != doc.partner_id-->
+        <!--                             or doc.partner_shipping_id != doc.partner_invoice_id">-->
+        <!--            <t t-set="information_block">-->
+        <!--                <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoicing and Shipping Address:</strong>-->
+        <!--                <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing Address:</strong>-->
+        <!--                <div t-field="doc.partner_invoice_id"-->
+        <!--                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>-->
+        <!--                <t t-if="doc.partner_shipping_id != doc.partner_invoice_id">-->
+        <!--                    <strong>Shipping Address:</strong>-->
+        <!--                    <div t-field="doc.partner_shipping_id"-->
+        <!--                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>-->
+        <!--                </t>-->
+        <!--            </t>-->
+        <!--        </t>-->
+        <!--        <div class="page">-->
+        <!--            <div class="oe_structure"/>-->
+
+        <!--            <h2 class="mt16">-->
+        <!--                <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">-->
+        <!--                    <span t-if="doc.state not in ['draft','sent']">Order # </span>-->
+        <!--                    <span t-if="doc.state in ['draft','sent']">Quotation # </span>-->
+        <!--                </t>-->
+        <!--                <t t-if="env.context.get('proforma', False) or is_pro_forma">-->
+        <!--                    <span>Pro-Forma Invoice # </span>-->
+        <!--                </t>-->
+        <!--                <span t-field="doc.name"/>-->
+        <!--            </h2>-->
+
+        <!--            <div class="row mt32 mb32" id="informations">-->
+        <!--                <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2">-->
+        <!--                    <strong>Your Reference:</strong>-->
+        <!--                    <p class="m-0" t-field="doc.client_order_ref"/>-->
+        <!--                </div>-->
+        <!--                <div t-if="doc.date_order and doc.state not in ['draft','sent']" class="col-auto col-3 mw-100 mb-2">-->
+        <!--                    <strong>Order Date:</strong>-->
+        <!--                    <p class="m-0" t-field="doc.date_order"/>-->
+        <!--                </div>-->
+        <!--                <div t-if="doc.date_order and doc.state in ['draft','sent']" class="col-auto col-3 mw-100 mb-2">-->
+        <!--                    <strong>Quotation Date:</strong>-->
+        <!--                    <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>-->
+        <!--                </div>-->
+        <!--                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-auto col-3 mw-100 mb-2" name="expiration_date">-->
+        <!--                    <strong>Expiration:</strong>-->
+        <!--                    <p class="m-0" t-field="doc.validity_date"/>-->
+        <!--                </div>-->
+        <!--                <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">-->
+        <!--                    <strong>Salesperson:</strong>-->
+        <!--                    <p class="m-0" t-field="doc.user_id"/>-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+        <!--            &lt;!&ndash; Is there a discount on at least one line? &ndash;&gt;-->
+        <!--            <t t-set="display_discount" t-value="any(l.discount for l in doc.order_line)"/>-->
+
+        <!--            <table class="table table-sm o_main_table">-->
+        <!--                &lt;!&ndash; In case we want to repeat the header, remove "display: table-row-group" &ndash;&gt;-->
+        <!--                <thead style="display: table-row-group">-->
+        <!--                    <tr>-->
+        <!--                        <th name="th_description" class="text-left">Description</th>-->
+        <!--                        <th name="th_quantity" class="text-right">Quantity</th>-->
+        <!--                        <th name="th_priceunit" class="text-right">Unit Price</th>-->
+        <!--                        <th name="th_discount" t-if="display_discount" class="text-right" groups="product.group_discount_per_so_line">-->
+        <!--                            <span>Disc.%</span>-->
+        <!--                        </th>-->
+        <!--                        <th name="th_taxes" class="text-right">Taxes</th>-->
+        <!--                        <th name="th_subtotal" class="text-right">-->
+        <!--                            <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>-->
+        <!--                            <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>-->
+        <!--                        </th>-->
+        <!--                    </tr>-->
+        <!--                </thead>-->
+        <!--                <tbody class="sale_tbody">-->
+
+        <!--                    <t t-set="current_subtotal" t-value="0"/>-->
+
+        <!--                    <t t-foreach="doc.order_line" t-as="line">-->
+
+        <!--                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>-->
+        <!--                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>-->
+
+        <!--                        <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">-->
+        <!--                            <t t-if="not line.display_type">-->
+        <!--                                <td name="td_name"><span t-field="line.name"/></td>-->
+        <!--                                <td name="td_quantity" class="text-right">-->
+        <!--                                    <span t-field="line.product_uom_qty"/>-->
+        <!--                                    <span t-field="line.product_uom"/>-->
+        <!--                                </td>-->
+        <!--                                <td name="td_priceunit" class="text-right">-->
+        <!--                                    <span t-field="line.price_unit"/>-->
+        <!--                                </td>-->
+        <!--                                <td t-if="display_discount" class="text-right" groups="product.group_discount_per_so_line">-->
+        <!--                                    <span t-field="line.discount"/>-->
+        <!--                                </td>-->
+        <!--                                <td name="td_taxes" class="text-right">-->
+        <!--                                    <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>-->
+        <!--                                </td>-->
+        <!--                                <td name="td_subtotal" class="text-right o_price_total">-->
+        <!--                                    <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>-->
+        <!--                                    <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>-->
+        <!--                                </td>-->
+        <!--                            </t>-->
+        <!--                            <t t-if="line.display_type == 'line_section'">-->
+        <!--                                <td name="td_section_line" colspan="99">-->
+        <!--                                    <span t-field="line.name"/>-->
+        <!--                                </td>-->
+        <!--                                <t t-set="current_section" t-value="line"/>-->
+        <!--                                <t t-set="current_subtotal" t-value="0"/>-->
+        <!--                            </t>-->
+        <!--                            <t t-if="line.display_type == 'line_note'">-->
+        <!--                                <td name="td_note_line" colspan="99">-->
+        <!--                                    <span t-field="line.name"/>-->
+        <!--                                </td>-->
+        <!--                            </t>-->
+        <!--                        </tr>-->
+
+        <!--                        <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">-->
+        <!--                            <tr class="is-subtotal text-right">-->
+        <!--                                <td name="td_section_subtotal" colspan="99">-->
+        <!--                                    <strong class="mr16">Subtotal</strong>-->
+        <!--                                    <span-->
+        <!--                                        t-esc="current_subtotal"-->
+        <!--                                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'-->
+        <!--                                    />-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+        <!--                        </t>-->
+        <!--                    </t>-->
+        <!--                </tbody>-->
+        <!--            </table>-->
+
+        <!--            <div class="clearfix" name="so_total_summary">-->
+        <!--                <div id="total" class="row" name="total">-->
+        <!--                    <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">-->
+        <!--                        <table class="table table-sm">-->
+        <!--                            &lt;!&ndash; Tax totals &ndash;&gt;-->
+        <!--                            <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>-->
+        <!--                            <t t-call="account.document_tax_totals"/>-->
+        <!--                        </table>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+        <!--            <div t-if="doc.signature" class="mt32 ml64 mr4" name="signature">-->
+        <!--                <div class="offset-8">-->
+        <!--                    <strong>Signature</strong>-->
+        <!--                </div>-->
+        <!--                <div class="offset-8">-->
+        <!--                    <img t-att-src="image_data_uri(doc.signature)" style="max-height: 4cm; max-width: 8cm;"/>-->
+        <!--                </div>-->
+        <!--                <div class="offset-8 text-center">-->
+        <!--                    <p t-field="doc.signed_by"/>-->
+        <!--                </div>-->
+        <!--            </div>-->
+
+        <!--            <div class="oe_structure"/>-->
+
+        <!--            <p t-field="doc.note" />-->
+        <!--            <p t-if="not is_html_empty(doc.payment_term_id.note)">-->
+        <!--                <span t-field="doc.payment_term_id.note"/>-->
+        <!--            </p>-->
+        <!--            <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and not is_html_empty(doc.fiscal_position_id.sudo().note)">-->
+        <!--                <strong>Fiscal Position Remark:</strong>-->
+        <!--                <span t-field="doc.fiscal_position_id.sudo().note"/>-->
+        <!--            </p>-->
+        <!--        </div>-->
+        <!--    </t>-->
+        <!--</template>-->
+
+
+        <!--<template id="report_saleorder">-->
+        <!--    <t t-call="web.html_container">-->
+        <!--        <t t-foreach="docs" t-as="doc">-->
+        <!--            <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>-->
+        <!--        </t>-->
+        <!--    </t>-->
+        <!--</template>-->
+
+        <!--<template id="report_saleorder_pro_forma">-->
+        <!--    <t t-call="web.html_container">-->
+        <!--        <t t-set="is_pro_forma" t-value="True"/>-->
+        <!--        <t t-foreach="docs" t-as="doc">-->
+        <!--            <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>-->
+        <!--        </t>-->
+        <!--    </t>-->
+        <!--</template>-->
+
+        <!--</odoo>-->

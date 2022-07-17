@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="slide_channel_partner_view_tree_inherit" model="ir.ui.view">
+            <field name="name">slide.channel.partner.tree</field>
+            <field name="model">slide.channel.partner</field>
+            <field name="inherit_id" ref="website_slides.slide_channel_partner_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='channel_user_id']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <!--                <xpath expr="//tree/field[@name='partner_email']" position="attributes">-->
+                <!--                    <attribute name="readonly">0</attribute>-->
+                <!--                </xpath>-->
+                <!--                <xpath expr="//tree/field[@name='create_date']" position="attributes">-->
+                <!--                    <attribute name="readonly">0</attribute>-->
+                <!--                </xpath>-->
+                <xpath expr="//tree/field[@name='partner_email']" position="before">
+                    <field name="partner_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

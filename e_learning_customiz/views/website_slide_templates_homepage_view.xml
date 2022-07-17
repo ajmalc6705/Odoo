@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <!-- Method to Hide Email Validation Banner -->
+        <template id="website_profile.email_validation_banner" active="True" customize_show="True" >
+            <xpath expr="//t[hasclass('send_alert_classes')]" position="replace"/>
+        </template>
+
+        <!--Method to Hide Latest achievements-->
+        <template id="e_learning_customiz.toggle_latest_achievements"
+                  inherit_id="website_slides.slides_home_achievements_small"
+                  active="True" customize_show="True" name='Display Achievements'>
+            <xpath expr="//t[hasclass('o_wslides_home_aside')]" position="replace"/>
+        </template>
+
+        <!--   Method to Hide  Display Leaderboard -->
+        <template id="e_learning_customiz.toggle_leaderboard" inherit_id="website_slides.slides_home_users_small"
+                  active="True"
+                  customize_show="True" name='Display Leaderboard'>
+            <xpath expr="//div[hasclass('o_wslides_home_aside')]" position="replace"/>
+
+        </template>
+
+    </data>
+</odoo>
