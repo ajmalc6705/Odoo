@@ -1,8 +1,8 @@
 # Copyright 2015 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
-    "name": "Free of Cost for Sale order  ",
-    "summary": "Free of Cost For  Sale  ",
+    "name": "Free of Cost for Sale and Purchase Order  ",
+    "summary": "Free of Cost For  Sales and Purchase  ",
     "author": "Ajmal C",
     'email': 'ajmalc6705@gmail.com',
     "website": "",
@@ -13,10 +13,11 @@
     "live_test_url": "",
     'images': ['static/description/main_screenshot.png'],
 
-    "depends": ["base", "sale_management", ],
+    "depends": ["base", "sale_management", "purchase", ],
     'data': [
         'security/ir.model.access.csv',
         'views/sale_order_custom_views.xml',
+        'views/purchase_order_custom_views.xml',
         'views/free_of_cost_views.xml'
     ],
     "demo": [],
