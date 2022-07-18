@@ -180,10 +180,7 @@
                             </t>
                         </td>
                         <td style="padding-bottom:3pt;padding-top:2pt;vertical-align:top" class="pos-center-align">
-                            <!--  <t t-esc="orderline.get_lst_price()"/>-->
-                            <!-- <t t-esc="env.pos.format_currency(orderline.get_unit_display_price())"/>-->
                             <t t-esc="env.pos.format_currency(orderline.get_unit_display_price())"/>
-                            <!--  <t t-esc="env.pos.format_currency_no_symbol(receipt.change)"/>-->
                         </td>
                         <td style="padding-bottom:3pt;padding-top:2pt;vertical-align:top" class="pos-center-align">
                             <t t-esc="orderline.quantity"/>
