@@ -13,7 +13,7 @@
     'license': 'LGPL-3',
     "live_test_url": "",
     'depends': ['point_of_sale'],
-    'qweb': ['static/src/xml/templates.xml'],
+    
     'data': [
 
         'views/product_view.xml'
