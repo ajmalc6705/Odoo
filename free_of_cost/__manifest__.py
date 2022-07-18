@@ -1,7 +1,7 @@
 # Copyright 2015 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
-    "name": "Free of Cost in Sale order  ",
+    "name": "Free of Cost for Sale order  ",
     "summary": "Free of Cost For  Sale  ",
     "author": "Ajmal C",
     'email': 'ajmalc6705@gmail.com',
