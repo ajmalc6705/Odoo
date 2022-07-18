@@ -2,7 +2,7 @@
 <odoo>
 <template id="receipt_ext_js"  inherit_id="web.assets_backend">
     <xpath expr="." position="inside">
-        <script type="text/javascript" src="/pos_arabic_receipt_v14/static/src/js/models.js" />
+        <script type="text/javascript" src="/pos_arabic_receipt_v15/static/src/js/models.js" />
     </xpath>
 </template>
 </odoo>
