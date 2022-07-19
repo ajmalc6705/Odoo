@@ -7,7 +7,7 @@
     'email': 'ajmalc6705@gmail.com',
     "website": "",
     "category": "Sale",
-    "version": "15.1.1.1",
+    "version": "1.1.1",
     'price': 0,
     'sequence': 1,
     "license": "AGPL-3",
