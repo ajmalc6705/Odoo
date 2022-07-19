@@ -1,5 +1,5 @@
 {
-    'name': 'POS Arabic Receipt',
+    'name': 'POS Arabic Receipt V15',
     'summary': 'POS arabic receipt as per the industrial Standard',
     'description': """POS arabic receipt as per the industrial Standard""",
     "version": "15.1.1.1",
