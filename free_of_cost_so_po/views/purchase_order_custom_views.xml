@@ -10,7 +10,8 @@
                 <field name="foc_reason_id" force_save="1" attrs="{'required': [('foc', '!=', False)]}"/>
             </xpath>
             <xpath expr="//tree/field[@name='price_unit']" position="attributes">
-                <attribute name="attrs">{'readonly': ['|', ('qty_invoiced', '!=', 0), ('foc', '!=', False)]}
+                <attribute name="attrs">{'readonly': ['|', ('qty_invoiced', '!=', 0), ('foc', '!=', False)]}</attribute>
+            </xpath>
         </field>
     </record>
 
