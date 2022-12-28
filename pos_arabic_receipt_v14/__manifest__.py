@@ -8,7 +8,7 @@
     'website': '',
     'category': 'Point of Sale',
     'author': 'Ajmal',
-    'price': 35,
+    'price': 10.00,
     'currency': 'EUR',
     'license': 'OPL-1',
     "live_test_url": "",
